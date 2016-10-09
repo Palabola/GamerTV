@@ -1,8 +1,8 @@
 {
     "name": "zGamerTV",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "AlphaWolf",
+    "version": "0.5.0",
+    "keywords": ["twitch", "functional", "server", "client", "browser"],
+    "author": "Palabola",
     "contributors": [],
     "dependencies": {}
 }
