@@ -6,6 +6,9 @@ var cache_data = [];
 
 
 function insert_channel(data){
+    
+        if(typeof(cache_data)!=='undefined')
+            return;
  
         for(var i=0; i < data.length; i++)
                {
