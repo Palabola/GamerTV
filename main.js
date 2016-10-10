@@ -37,7 +37,7 @@ setInterval(function(){
         twitch.cache = data;
         logger.insert_channel(data);
         }); 
-}, 1000);
+}, 30000);
 
 
 app.use('/static', express.static(__dirname + '/public'));

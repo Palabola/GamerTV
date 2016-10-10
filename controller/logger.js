@@ -21,7 +21,7 @@ function insert_channel(data){
                {
                         for(var k=0; k < cache_data.length; k++)   
                         {
-                          if(cache_data[i]._id === data[i]._id)
+                          if(cache_data[k]._id === data[i]._id)
                               {
                                  skip = 1;
                                  break;
