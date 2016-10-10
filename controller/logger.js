@@ -7,6 +7,7 @@ var cache_data = [];
 
 function insert_channel(data){
     
+    try{
         if(typeof(data)==='undefined')
         { 
             console.log('wft');
@@ -22,7 +23,6 @@ function insert_channel(data){
                         {
                           if(cache_data[i]._id === data[i]._id)
                               {
-                                 console.log('skip');
                                  skip = 1;
                                  break;
                               }
@@ -40,8 +40,11 @@ function insert_channel(data){
                 }
                 
         cache_data = data;
-        
-        return;
+         return;
+    }
+    catch(err) {
+    console.log(err.message);
+    }   
     
 };
 
