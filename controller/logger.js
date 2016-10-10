@@ -7,9 +7,11 @@ var cache_data = [];
 
 function insert_channel(data){
     
-        if(typeof(data)!=='undefined')
+        if(typeof(data)==='undefined')
+        { 
+            console.log('wft');
             return;
- 
+        }
         for(var i=0; i < data.length; i++)
                {
                  var skip = 0;  
