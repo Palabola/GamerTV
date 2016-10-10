@@ -1,46 +1,11 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-        <title><%= title %></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<%= base_url %>/static/css/styles.css">
-        <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-     
-</head>
-<body>  
-     <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="">GamerTV</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-
-       
+<% include header %>
     <div class="container">
       <!-- Csatornák -->
       <div class="row">
           <% for(var i=0; i < data.length; i++) { %>
           <div class="col-xl-4 col-sm-6 col-md-6 clearfix">
               <a href="./stream/<%= data[i].channel.name %>" target="_blank"> <img src="<%= data[i].preview.large %>" class="img-fluid" alt="<%= data[i].channel.name %>"></a> 
-                  <p  class="text-capitalize"><%= data[i].channel.name %> <span class="tag tag-danger">Élő</span></p>
+                  <p  class="text-capitalize"><%- generator.uc_first(data[i].channel.name) %> <span class="tag tag-danger">Élő</span></p>
                   <a class="d-inline"><%= data[i].channel.game %></a>
                   <a class="d-inline pull-xs-right">Nézők: <%= data[i].viewers %></a>
           </div>
@@ -48,14 +13,5 @@
              <% } %>
       </div>
        <!-- Csatornák -->
-      <hr>
-
-      <footer>
-        <p>&copy; 2016 GamerTV / Powered by Node.js.</p>
-      </footer>
     </div> 
- 
-    
-    
-</body>
-</html> 
+<% include footer %>

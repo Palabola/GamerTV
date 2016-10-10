@@ -5,5 +5,9 @@ module.exports = {
         client_id : '', //Twitch API Client ID
         lang : 'en',
         limit : 100,
+        host     : '127.0.0.1',
+        user     : 'root',
+        password : '',
+        database : 'twitch-node'
 };
 

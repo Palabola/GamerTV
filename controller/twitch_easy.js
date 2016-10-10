@@ -1,10 +1,11 @@
 // GET TWITCH API
 var https = require('https');
+var settings = require('../settings');
 
 module.exports = {
-    lang : "en",
-    limit : 25,
-    client_id : '',
+    lang : settings.lang,
+    limit : settings.limit,
+    client_id : settings.client_id,
     cache: [],
     
     

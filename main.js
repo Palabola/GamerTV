@@ -1,20 +1,24 @@
+var settings = require('./settings');
 var express = require('express');
 var app = express();
-var stream = require('./controller/stream');
-var twitch = require('./twitch_easy');
-var settings = require('./settings');
+var db = require('./controller/db_connect');
+var logger = require('./controller/logger');
+var twitch = require('./controller/twitch_easy');
+
 
 // OPTIONS
-
 app.locals.base_url = settings.base_url;
 app.locals.base_title = settings.base_title;
 app.locals.port = settings.port;
-twitch.client_id = settings.client_id;
-twitch.lang = settings.lang;
-twitch.limit = settings.limit;
-
-
 // OPTIONS
+
+app.locals.generator = ({
+    
+   uc_first : function( str ) {
+    return str.substr(0, 1).toUpperCase() + str.substr(1);
+}, 
+    
+});
 
 app.set('view engine', 'ejs');
 
@@ -31,6 +35,7 @@ setInterval(function(){
         twitch.api_get(function (data){
         console.log('Update Twitch List!');
         twitch.cache = data;
+        logger.insert_channel(data);
         }); 
 }, 30000);
 
