@@ -4,10 +4,13 @@ var app = express();
 var db = require('./controller/db_connect');
 var logger = require('./controller/logger');
 var twitch = require('./controller/twitch_easy');
+var youtube = require('./controller/youtube_easy');
 
 
 // OPTIONS
 app.locals.base_url = settings.base_url;
+app.locals.meta_description = settings.meta_description;
+app.locals.meta_keyword = settings.meta_keyword;
 app.locals.base_title = settings.base_title;
 app.locals.port = settings.port;
 // OPTIONS
@@ -27,17 +30,36 @@ app.listen(app.locals.port, function () {
 });
 
 
-twitch.api_get(function (data){
-console.log('Up&Run!');
-twitch.cache = data;});
-
 setInterval(function(){ 
         twitch.api_get(function (data){
         console.log('Update Twitch List!');
         twitch.cache = data;
         logger.insert_channel(data);
+        }  
+        ); 
+}, 30000);
+
+setInterval(function(){ 
+        youtube.api_get(function(callback){
+        console.log('Update Youtube List!');
+        
+        var youtube_data = callback;
+        
+                    youtube.cache = youtube.update_viewers(youtube_data,function(callback){
+
+                         youtube.cache = callback;
+
+                         console.log("fos");
+                         console.log(youtube.cache);
+
+                         console.log('Viewers updated!');
+                     });
+        //logger.insert_channel(data);
         }); 
 }, 30000);
+
+
+
 
 
 app.use('/static', express.static(__dirname + '/public'));
@@ -50,9 +72,6 @@ app.get('/', function (req, res) {
 app.get('/stream/:userId', function (req, res, next) {
     
     var loopdata = twitch.cache;
-    
-    console.log(req.url);
-    
     if(req.params.userId!="")
     {    
                     for(var i=0;i < loopdata.length; i++)

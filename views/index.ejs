@@ -5,9 +5,14 @@
           <% for(var i=0; i < data.length; i++) { %>
           <div class="col-xl-4 col-sm-6 col-md-6 clearfix">
               <a href="./stream/<%= data[i].channel.name %>" target="_blank"> <img src="<%= data[i].preview.large %>" class="img-fluid" alt="<%= data[i].channel.name %>"></a> 
-                  <p  class="text-capitalize"><%- generator.uc_first(data[i].channel.name) %> <span class="tag tag-danger">Élő</span></p>
+                  <p  class="text-capitalize"><%- generator.uc_first(data[i].channel.name) %> 
+                      <span class="tag tag-danger">Élő</span> 
+                      <span class="tag tag-primary">
+                          <i class="fa fa-eye" aria-hidden="true"></i><%= data[i].viewers %>
+                      </span>
+                  </p>
                   <a class="d-inline"><%= data[i].channel.game %></a>
-                  <a class="d-inline pull-xs-right">Nézők: <%= data[i].viewers %></a>
+                  
           </div>
 
              <% } %>
