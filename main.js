@@ -41,19 +41,12 @@ setInterval(function(){
 
 setInterval(function(){ 
         youtube.api_get(function(callback){
-        console.log('Update Youtube List!');
         
         var youtube_data = callback;
-        
-                    youtube.cache = youtube.update_viewers(youtube_data,function(callback){
-
+                         youtube.cache = youtube.update_viewers(youtube_data,function(callback){
                          youtube.cache = callback;
-
-                         console.log("fos");
-                         console.log(youtube.cache);
-
-                         console.log('Viewers updated!');
-                     });
+                         console.log('Update Youtube List!');
+                        });
         //logger.insert_channel(data);
         }); 
 }, 30000);
